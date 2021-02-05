@@ -1,16 +1,15 @@
-
 // main
 loadItems()
     .then(items => {
         displayItems(items); //items 보여주기
         // setEventListeners(items); //items 이벤트 걸기
     })
-    .catch(console.log('error'));
+    // .catch(console.log('error'));
 
 
 function loadItems() {
-    return fetch('../data/data.json')
-        .then(response => response.json())
+    return fetch('./data/data.json')
+        .then(response => response.json()) //JSON형식의 문자열을 객체로 변환
         .then(json => json.items)
 }
 
@@ -27,3 +26,8 @@ function createHTMLString(item){
     </li>
     `;
 }
+
+
+
+
+
