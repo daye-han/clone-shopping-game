@@ -1,2 +1,3 @@
 # clone-shopping-game
-clone coding / shopping mini game
+clone coding 
+dream coding - shopping mini game
