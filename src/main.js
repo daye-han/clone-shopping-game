@@ -2,9 +2,9 @@
 loadItems()
     .then(items => {
         displayItems(items); //items 보여주기
-        // setEventListeners(items); //items 이벤트 걸기
+        setEventListeners(items); //items 이벤트 걸기
     })
-    // .catch(console.log('error'));
+    .catch();
 
 
 function loadItems() {
@@ -26,6 +26,54 @@ function createHTMLString(item){
     </li>
     `;
 }
+
+function onButtonClick(event, items){
+    const dataset = event.target.dataset;
+    const key = dataset.key;
+    const value = dataset.value;
+
+    if(key == null || value == null){
+        return;
+    }
+
+    displayItems(items.filter(item => item[key] === value));    
+}
+
+function setEventListeners(items) {
+    const logo = document.querySelector('.logo');
+    const buttons = document.querySelector('.buttons');
+    logo.addEventListener('click', ()=> displayItems(items));
+    buttons.addEventListener('click', event => onButtonClick(event, items));
+}
+
+/* function setEventListeners(items) {
+    // 버튼 가져온다.
+    // 버튼을 클릭한다
+    // 옷 모양 클릭하면 -> type 에 맞는 item 보여주기
+    // 색상 버튼 클릭하면 -> color에 맞는 item 보여주기 
+    let buttons = document.querySelectorAll('.btn');
+    console.log(items);
+    
+    buttons.forEach(function(button, index){
+        button.addEventListener('click', function(){
+            let selectItems = [];
+            if(button.classList.contains('colorBtn')){
+                items.forEach(function(item){
+                    if(item.color === button.innerText){
+                        selectItems.push(item);
+                    }
+                })
+            } else {
+                items.forEach(function (item) {
+                    if (item.type === button.querySelector('img').getAttribute('alt')) {
+                        selectItems.push(item);
+                    }
+                })
+            }
+            displayItems(selectItems);            
+        })
+    })    
+} */
 
 
 
